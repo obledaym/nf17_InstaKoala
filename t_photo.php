@@ -17,15 +17,15 @@ else if ($res['nb']==0){
 	 $db->query('UPDATE likes SET likes = 1 WHERE (pseudo='.$_SESSION['pseudo'].' and id_object = ' .$_POST['id_object']. ')');
 	}
 	if ($_POST['like']=="dislike"){
-	 $db->query('UPDATE likes SET likes = -1 WHERE (pseudo='.$_SESSION['pseudo'].' and id_object = ' .$_POST['id_object']. ')');
+	 $db->query('UPDATE likes SET likes = -1 WHERE (pseudo='.$_SESSION['pseudo'].' and id_object = ' .$_POST['id_object']. ')');}
 if ($_POST['like']=="nothing"){
 	 $db->query('DELETE FROM likes WHERE (pseudo='.$_SESSION['pseudo'].' and id_object = ' .$_POST['id_object']. ')');
 	}
-}
 	}     
+}
 else if ($_POST['type']=="com"){
-$db->query('INSERT INTO likable_object (pseudo) VALUES ('.$_SESSION['pseudo'].')');
-$req=$db->query('SELECT id_object FROM likable_object WHERE (id_object = (SELECT MAX(id_object) FROM likable_object) and (pseudo = '.$_SESSION['pseudo'].'))'); 
+$db->query('INSERT INTO likable_object (pseudo) VALUES ("'.$_SESSION['pseudo'].'")');
+$req=$db->query('SELECT (id_object) FROM likable_object WHERE (id_object = (SELECT (MAX(id_object)) FROM likable_object) and (pseudo = "'.$_SESSION['pseudo'].'"))'); 
 $id=$req->fetch();
 $db->query('INSERT INTO commentaire  VALUES ('.$id['id_object'].',' .$_POST['id_object']. ','.$_SESSION['pseudo'].','.$_POST['com'].')');
 	}  ?>
