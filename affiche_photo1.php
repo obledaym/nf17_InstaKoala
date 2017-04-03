@@ -28,8 +28,7 @@ $like_photo=$req1->fetch();*/
 <input type="hidden" value="com" name="type">
    <input type="submit" value="Ajouter un commentaire"><input type="hidden" value="<?php echo $_GET['photo']; ?>" name="id_object"></form>
 </td></tr><tr><td><h2>Commentaires</h2></td></tr>
-<?php $req = $db->query('SELECT (pseudo,contenu) FROM commentaire where (id_photo="'.$_GET['photo'].'")'); ?>
-<?php
+<?php $req = $db->query('SELECT (pseudo,contenu) FROM commentaire where (id_photo="'.$_GET['photo'].'")'); 
 
 while($com= $req->fetch())
 {	echo ' <tr><td> ';
